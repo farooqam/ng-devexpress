@@ -4,9 +4,10 @@
       <dxo-form>
         <dxi-item dataField="id"></dxi-item>
         <dxi-item dataField="name"></dxi-item>
-        <dxi-item itemType="group" caption="Aliases">
+        <dxi-item template="aliasesTemplate" itemType="group" caption="Aliases"></dxi-item>
+        <div *dxTemplate="let data of 'aliasesTemplate'">
           <app-alias-list [aliases]="aliases"></app-alias-list>
-        </dxi-item>
+        </div>
       </dxo-form>
   </dxo-editing>
   <dxi-column dataField="id"></dxi-column>

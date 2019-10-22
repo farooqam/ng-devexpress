@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges, SimpleChange, ViewChild } from '@angular/core';
 import { Alias } from '../models';
 import { DxDataGridComponent } from 'devextreme-angular';
 
@@ -8,10 +8,10 @@ import { DxDataGridComponent } from 'devextreme-angular';
   styleUrls: ['./alias-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AliasListComponent implements OnInit {
-  @ViewChild(DxDataGridComponent, { static: false }) grid: DxDataGridComponent;
-
+export class AliasListComponent implements OnChanges {
   private aliases$: Alias[];
+
+  @ViewChild(DxDataGridComponent, { static: false }) grid: DxDataGridComponent;
 
   @Input() set aliases(value: Alias[]) {
     if (value) {
@@ -26,7 +26,15 @@ export class AliasListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnChanges(changes: SimpleChanges): void {
+    const aliases: SimpleChange = changes.aliases;
 
+    if (aliases.currentValue !== aliases.previousValue) {
+      this.aliases = aliases.currentValue;
+
+      if (this.grid) {
+        setTimeout(() => this.grid.instance.updateDimensions(), 500);
+      }
+    }
+   }
 }
