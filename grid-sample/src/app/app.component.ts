@@ -31,4 +31,8 @@ export class AppComponent implements OnInit {
       err => console.log(JSON.stringify(err))
     );
   }
+
+  logFilterBuilderText(e: any): void {
+    console.log(e.component);
+  }
 }

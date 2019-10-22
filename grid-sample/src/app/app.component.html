@@ -1,4 +1,7 @@
 <dx-data-grid [dataSource]="heroes" (onEditingStart)="handleEditingStart($event.data.id)">
+  <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+  <dxo-filter-builder [onInitialized]="logFilterBuilderText" [onValueChanged]="logFilterBuilderText"></dxo-filter-builder>
+  <dxo-filter-builder-popup [position]="{ of: window, at: 'top', my: 'top', offset: { y: 10 }}"></dxo-filter-builder-popup>
   <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
       <dxo-popup title="Heroes" [showTitle]="true"></dxo-popup>
       <dxo-form>
