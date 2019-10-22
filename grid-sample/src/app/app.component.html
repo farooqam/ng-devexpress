@@ -1,14 +1,1 @@
-<dx-data-grid [dataSource]="heroes" (onEditingStart)="handleEditingStart($event.data.id)">
-  <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
-      <dxo-popup title="Heroes" [showTitle]="true"></dxo-popup>
-      <dxo-form>
-        <dxi-item dataField="id"></dxi-item>
-        <dxi-item dataField="name"></dxi-item>
-        <dxi-item itemType="group" caption="Aliases">
-          <app-alias-list [aliases]="aliases"></app-alias-list>
-        </dxi-item>
-      </dxo-form>
-  </dxo-editing>
-  <dxi-column dataField="id"></dxi-column>
-  <dxi-column dataField="name"></dxi-column>
-</dx-data-grid>
+<app-filter-editor></app-filter-editor>
